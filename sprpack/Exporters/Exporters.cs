@@ -49,39 +49,17 @@ namespace sprpack
 
 			// find built in exporters
 			FindExporters(Assembly.GetExecutingAssembly());
-
-			// find exporters in any DLLs in the directory with sprpack.exe
-			string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-			string[] dlls = Directory.GetFiles(dir, "*.dll", SearchOption.TopDirectoryOnly);
-			foreach (string file in dlls)
-			{
-				try { FindExporters(Assembly.LoadFile(file)); }
-				catch { /* don't care */ }
-			}
 		}
 
 		private static void FindExporters(Assembly assembly)
 		{
-			foreach (Type type in assembly.GetTypes())
+			try
 			{
-				if (!type.IsAbstract && type.IsClass)
-				{
-					try
-					{
-						IImageExporter imageExporter = Activator.CreateInstance(type) as IImageExporter;
-						if (imageExporter != null)
-						{
-							imageExporters.Add(imageExporter);
-						}
-
-						IMapExporter mapExporter = Activator.CreateInstance(type) as IMapExporter;
-						if (mapExporter != null)
-						{
-							mapExporters.Add(mapExporter);
-						}
-					}
-					catch { /* don't care */ }
-				}
+				imageExporters.Add(new PngImageExporter() as IImageExporter);
+				
+				mapExporters.Add(new XmlMapExporter() as IMapExporter);
+			} catch {
+				/* Don't care ATM */
 			}
 		}
 	}

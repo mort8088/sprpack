@@ -85,15 +85,18 @@ namespace sprpack
 
 			// get the sizes of all the images
 			foreach (var image in files)
-			{
-				Bitmap bitmap = Bitmap.FromFile(image) as Bitmap;
-				if (bitmap == null)
-					return (int)FailCode.FailedToLoadImage;
-				imageSizes.Add(image, bitmap.Size);
-			}
+            {
+                if (image != null)
+                {
+                    Bitmap bitmap = (Bitmap)Bitmap.FromFile(image);
+                    if (bitmap == null)
+                        return (int)FailCode.FailedToLoadImage;
+                    imageSizes.Add(image, bitmap.Size);
+                }
+            }
 
-			// sort our files by file size so we place large sprites first
-			files.Sort(
+            // sort our files by file size so we place large sprites first
+            files.Sort(
 				(f1, f2) =>
 				{
 					Size b1 = imageSizes[f1];
@@ -291,23 +294,26 @@ namespace sprpack
 				// draw all the images into the output image
 				foreach (var image in files)
 				{
-					Rectangle location = imagePlacement[image];
-					Bitmap bitmap = Bitmap.FromFile(image) as Bitmap;
-					if (bitmap == null)
-						return null;
+					if (image != null)
+					{
+						Rectangle location = imagePlacement[image];
+						Bitmap bitmap = (Bitmap)Bitmap.FromFile(image);
+						if (bitmap == null)
+							return null;
 
-					// copy pixels over to avoid antialiasing or any other side effects of drawing
-					// the subimages to the output image using Graphics
-					for (int x = 0; x < bitmap.Width; x++)
-						for (int y = 0; y < bitmap.Height; y++)
-							outputImage.SetPixel(location.X + x, location.Y + y, bitmap.GetPixel(x, y));
+						// copy pixels over to avoid antialiasing or any other side effects of drawing
+						// the subimages to the output image using Graphics
+						for (int x = 0; x < bitmap.Width; x++)
+							for (int y = 0; y < bitmap.Height; y++)
+								outputImage.SetPixel(location.X + x, location.Y + y, bitmap.GetPixel(x, y));
+					}
 				}
 
 				return outputImage;
 			}
 			catch
 			{
-				return null;
+				return null; 
 			}
 		}
 	}

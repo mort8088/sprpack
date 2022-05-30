@@ -38,7 +38,8 @@ namespace sprpack
 
 		public void Save(string filename, Bitmap image)
 		{
-			image.Save(filename, ImageFormat.Png);
+			if (image != null)
+				image.Save(filename, ImageFormat.Png);
 		}
 	}
 }
