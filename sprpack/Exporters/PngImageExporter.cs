@@ -36,7 +36,7 @@ namespace sprpack
 			get { return "png"; }
 		}
 
-		public void Save(string filename, Image<Rgba32> image)
+		public void Save(string filename, Image<Rgba32>? image)
 		{
 			if (image != null)
 				image.Save(filename);

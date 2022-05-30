@@ -51,8 +51,8 @@ namespace sprpack
 				Exporters.Load();
 
 				// try to find matching exporters
-				IImageExporter imageExporter = null;
-				IMapExporter mapExporter = null;
+				IImageExporter? imageExporter = null;
+				IMapExporter? mapExporter = null;
 
 				string imageExtension = Path.GetExtension(arguments.image).Substring(1).ToLower();
 				
@@ -123,7 +123,7 @@ namespace sprpack
 
 				// generate our output
 				ImagePacker imagePacker = new ImagePacker();
-				Image<Rgba32> outputImage;
+				Image<Rgba32>? outputImage;
 				Dictionary<string, Rectangle> outputMap;
 
 				// pack the image, generating a map only if desired
@@ -177,7 +177,9 @@ namespace sprpack
 				{
 					while (!reader.EndOfStream)
 					{
-						inputFiles.Add(reader.ReadLine());
+						string? line = reader.ReadLine();
+						if (!string.IsNullOrEmpty(line))
+							inputFiles.Add(line);
 					}
 				}
 			}

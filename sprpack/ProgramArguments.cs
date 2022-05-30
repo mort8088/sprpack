@@ -53,9 +53,22 @@ namespace sprpack
 	 	public bool r { get; set; }
 
 	 	[Option(HelpText = "Path to file listing the images to build.")]
-	 	public string il { get; set; }
+	 	public string? il { get; set; }
 
 		[Value(0, Required = false, HelpText = "Images to pack.")]
 	 	public IEnumerable<string> input { get; set; }
+
+		public ProgramArguments()
+		{
+			this.image = "Atlas.png"; 
+			this.map = "Atlas.xml";
+			this.mw = Constants.DefaultMaximumSheetWidth;
+			this.mh = Constants.DefaultMaximumSheetWidth;
+			this.pad = Constants.DefaultImagePadding;
+			this.pow2 = false;
+			this.sqr = false;
+			this.r = false;
+			this.input = new List<string>();
+		}
 	}
 }
