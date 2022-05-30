@@ -28,3 +28,20 @@ Power of two and square:
 ![](https://github.com/nickgravelyn/spritesheetpacker/blob/master/images/Sheet4.png)
 
 All code was originaly written by Kelly Gravelyn except the code for computing the efficient placement of the rectangles which was taken from the [Nuclex Framework](http://nuclexframework.codeplex.com/).
+
+# sprpack --help
+sprpack 1.0.0
+Copyright (C) 2022 sprpack
+  --image         (Default: Atlas.png) Output file name for the image.
+  --map           (Default: Atlas.xml) Output file name for the map.
+  --mw            (Default: 4096) Maximum output width.
+  --mh            (Default: 4096) Maximum output height.
+  --pad           (Default: 1) Padding between images.
+  --pow2          (Default: false) Ensures output dimensions are powers of two.
+  --sqr           (Default: false) Ensures output is square.
+  --recursive     (Default: false) Searches subdirectories of any input directories.
+  --il            Path to file listing the images to build.
+  --help          Display this help screen.
+  --version       Display version information.
+
+  value pos. 0    Images to pack.
