@@ -1,5 +1,5 @@
 # sprpack
-Command line sprite sheet packer is a .NET Core fork of SpriteSheetPacker by kellygravelyn.
+Command line sprite sheet packer is a .NET Core fork of [SpriteSheetPacker](https://github.com/kellygravelyn/SpriteSheetPacker) by [kellygravelyn](https://github.com/kellygravelyn).
 
 I removed the windows forms GUI and replaced the Command line argument paser and also the use of System.Draw has been replaced with SixLabors.ImageSharp all in an effort to make this work in linux.
 
