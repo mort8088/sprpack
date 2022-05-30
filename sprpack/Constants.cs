@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace sprpack
+﻿namespace sprpack
 {
-	public static class Constants
+    public static class Constants
 	{
 		// our default maximum sprite sheet size
 		public const int DefaultMaximumSheetWidth = 4096;

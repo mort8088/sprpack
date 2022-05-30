@@ -24,15 +24,14 @@
 
 #endregion
 
-using System.Collections.Generic;
-using System.Drawing;
+using SixLabors.ImageSharp;
 
 namespace sprpack
 {
-	/// <summary>
-	/// An object able to save a sprite sheet map.
-	/// </summary>
-	public interface IMapExporter
+    /// <summary>
+    /// An object able to save a sprite sheet map.
+    /// </summary>
+    public interface IMapExporter
 	{
 		/// <summary>
 		/// Gets the extension for the map file type.

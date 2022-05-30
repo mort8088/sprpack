@@ -24,7 +24,8 @@
 
 #endregion
 
-using System.Drawing;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 
 namespace sprpack
 {
@@ -43,6 +44,6 @@ namespace sprpack
 		/// </summary>
 		/// <param name="filename">The file to which the image should be saved.</param>
 		/// <param name="image">The image to save to the file.</param>
-		void Save(string filename, Bitmap image);
+		void Save(string filename, Image<Rgba32> image);
 	}
 }

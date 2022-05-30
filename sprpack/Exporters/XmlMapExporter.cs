@@ -24,15 +24,13 @@
 
 #endregion
 
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
+using SixLabors.ImageSharp;
 
 namespace sprpack
 {
-	// writes out an XML file ready to be put into a XNA Content project and get compiled as content.
-	// this file can be loaded using Content.Load<Dictionary<string, Rectangle>> from inside the game.
-	public class XmlMapExporter : IMapExporter
+    // writes out an XML file ready to be put into a XNA Content project and get compiled as content.
+    // this file can be loaded using Content.Load<Dictionary<string, Rectangle>> from inside the game.
+    public class XmlMapExporter : IMapExporter
 	{
 		public string MapExtension
 		{

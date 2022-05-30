@@ -24,13 +24,9 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Text.RegularExpressions;
-using System.Diagnostics;
 using CommandLine;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 
 namespace sprpack
 {
@@ -127,7 +123,7 @@ namespace sprpack
 
 				// generate our output
 				ImagePacker imagePacker = new ImagePacker();
-				Bitmap outputImage;
+				Image<Rgba32> outputImage;
 				Dictionary<string, Rectangle> outputMap;
 
 				// pack the image, generating a map only if desired

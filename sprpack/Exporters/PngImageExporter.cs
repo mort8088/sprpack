@@ -24,22 +24,22 @@
 
 #endregion
 
-using System.Drawing;
-using System.Drawing.Imaging;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 
 namespace sprpack
 {
-	public class PngImageExporter : IImageExporter
+    public class PngImageExporter : IImageExporter
 	{
 		public string ImageExtension
 		{
 			get { return "png"; }
 		}
 
-		public void Save(string filename, Bitmap image)
+		public void Save(string filename, Image<Rgba32> image)
 		{
 			if (image != null)
-				image.Save(filename, ImageFormat.Png);
+				image.Save(filename);
 		}
 	}
 }

@@ -24,23 +24,23 @@
 
 #endregion
 
-using System.Drawing;
+using SixLabors.ImageSharp;
 
 namespace sprpack
 {
-	/// <summary>Base class for rectangle packing algorithms</summary>
-	/// <remarks>
-	///   <para>
-	///     By uniting all rectangle packers under this common base class, you can
-	///     easily switch between different algorithms to find the most efficient or
-	///     performant one for a given job.
-	///   </para>
-	///   <para>
-	///     An almost exhaustive list of packing algorithms can be found here:
-	///     http://www.csc.liv.ac.uk/~epa/surveyhtml.html
-	///   </para>
-	/// </remarks>
-	internal abstract class RectanglePacker
+    /// <summary>Base class for rectangle packing algorithms</summary>
+    /// <remarks>
+    ///   <para>
+    ///     By uniting all rectangle packers under this common base class, you can
+    ///     easily switch between different algorithms to find the most efficient or
+    ///     performant one for a given job.
+    ///   </para>
+    ///   <para>
+    ///     An almost exhaustive list of packing algorithms can be found here:
+    ///     http://www.csc.liv.ac.uk/~epa/surveyhtml.html
+    ///   </para>
+    /// </remarks>
+    internal abstract class RectanglePacker
 	{
 		/// <summary>Maximum width the packing area is allowed to have</summary>
 		protected int PackingAreaWidth { get; private set; }

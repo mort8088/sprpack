@@ -24,57 +24,55 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Drawing;
+using SixLabors.ImageSharp;
 
 namespace sprpack
 {
-	/// <summary>Rectangle packer using an algorithm by Javier Arevalo</summary>
-	/// <remarks>
-	///   <para>
-	///     Original code by Javier Arevalo (jare at iguanademos dot com). Rewritten
-	///     to C# / .NET by Markus Ewald (cygon at nuclex dot org). The following comments
-	///     were written by the original author when he published his algorithm.
-	///   </para>
-	///   <para>
-	///     You have a bunch of rectangular pieces. You need to arrange them in a
-	///     rectangular surface so that they don't overlap, keeping the total area of the
-	///     rectangle as small as possible. This is fairly common when arranging characters
-	///     in a bitmapped font, lightmaps for a 3D engine, and I guess other situations as
-	///     well.
-	///   </para>
-	///   <para>
-	///     The idea of this algorithm is that, as we add rectangles, we can pre-select
-	///     "interesting" places where we can try to add the next rectangles. For optimal
-	///     results, the rectangles should be added in order. I initially tried using area
-	///     as a sorting criteria, but it didn't work well with very tall or very flat
-	///     rectangles. I then tried using the longest dimension as a selector, and it
-	///     worked much better. So much for intuition...
-	///   </para>
-	///   <para>
-	///     These "interesting" places are just to the right and just below the currently
-	///     added rectangle. The first rectangle, obviously, goes at the top left, the next
-	///     one would go either to the right or below this one, and so on. It is a weird way
-	///     to do it, but it seems to work very nicely.
-	///   </para>
-	///   <para>
-	///     The way we search here is fairly brute-force, the fact being that for most
-	///     offline purposes the performance seems more than adequate. I have generated a
-	///     japanese font with around 8500 characters and all the time was spent generating
-	///     the bitmaps.
-	///   </para>
-	///   <para>
-	///     Also, for all we care, we could grow the parent rectangle in a different way
-	///     than power of two. It just happens that power of 2 is very convenient for
-	///     graphics hardware textures.
-	///   </para>
-	///   <para>
-	///     I'd be interested in hearing of other approaches to this problem. Make sure
-	///     to post them on http://www.flipcode.com
-	///   </para>
-	/// </remarks>
-	internal class ArevaloRectanglePacker : RectanglePacker
+    /// <summary>Rectangle packer using an algorithm by Javier Arevalo</summary>
+    /// <remarks>
+    ///   <para>
+    ///     Original code by Javier Arevalo (jare at iguanademos dot com). Rewritten
+    ///     to C# / .NET by Markus Ewald (cygon at nuclex dot org). The following comments
+    ///     were written by the original author when he published his algorithm.
+    ///   </para>
+    ///   <para>
+    ///     You have a bunch of rectangular pieces. You need to arrange them in a
+    ///     rectangular surface so that they don't overlap, keeping the total area of the
+    ///     rectangle as small as possible. This is fairly common when arranging characters
+    ///     in a bitmapped font, lightmaps for a 3D engine, and I guess other situations as
+    ///     well.
+    ///   </para>
+    ///   <para>
+    ///     The idea of this algorithm is that, as we add rectangles, we can pre-select
+    ///     "interesting" places where we can try to add the next rectangles. For optimal
+    ///     results, the rectangles should be added in order. I initially tried using area
+    ///     as a sorting criteria, but it didn't work well with very tall or very flat
+    ///     rectangles. I then tried using the longest dimension as a selector, and it
+    ///     worked much better. So much for intuition...
+    ///   </para>
+    ///   <para>
+    ///     These "interesting" places are just to the right and just below the currently
+    ///     added rectangle. The first rectangle, obviously, goes at the top left, the next
+    ///     one would go either to the right or below this one, and so on. It is a weird way
+    ///     to do it, but it seems to work very nicely.
+    ///   </para>
+    ///   <para>
+    ///     The way we search here is fairly brute-force, the fact being that for most
+    ///     offline purposes the performance seems more than adequate. I have generated a
+    ///     japanese font with around 8500 characters and all the time was spent generating
+    ///     the bitmaps.
+    ///   </para>
+    ///   <para>
+    ///     Also, for all we care, we could grow the parent rectangle in a different way
+    ///     than power of two. It just happens that power of 2 is very convenient for
+    ///     graphics hardware textures.
+    ///   </para>
+    ///   <para>
+    ///     I'd be interested in hearing of other approaches to this problem. Make sure
+    ///     to post them on http://www.flipcode.com
+    ///   </para>
+    /// </remarks>
+    internal class ArevaloRectanglePacker : RectanglePacker
 	{
 		#region class AnchorRankComparer
 

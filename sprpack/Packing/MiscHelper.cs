@@ -24,14 +24,12 @@
 
 #endregion
 
-using System.IO;
-
 namespace sprpack
 {
-	public static class MiscHelper
+    public static class MiscHelper
 	{
 		// the valid extensions for images
-		public static readonly string[] AllowedImageExtensions = new[] { "png", "jpg", "bmp", "gif" };
+		public static readonly string[] AllowedImageExtensions = new[] { "png" };
 
 		// determines if a file is an image we accept
 		public static bool IsImageFile(string file)

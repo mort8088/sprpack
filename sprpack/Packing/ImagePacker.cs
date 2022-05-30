@@ -24,14 +24,12 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 
 namespace sprpack
 {
-	public class ImagePacker
+    public class ImagePacker
 	{
 		// various properties of the resulting image
 		private bool requirePow2, requireSquare;
@@ -66,7 +64,7 @@ namespace sprpack
 			int maximumHeight,
 			int imagePadding,
 			bool generateMap,
-			out Bitmap outputImage, 
+			out Image<Rgba32>? outputImage, 
 			out Dictionary<string, Rectangle> outputMap)
 		{
 			files = new List<string>(imageFiles);
@@ -76,7 +74,7 @@ namespace sprpack
 			outputHeight = maximumHeight;
 			padding = imagePadding;
 
-			outputImage = new Bitmap(10, 10);
+			outputImage = new(10, 10);
 			outputMap = new Dictionary<string, Rectangle>();
 
 			// make sure our dictionaries are cleared before starting
@@ -88,10 +86,10 @@ namespace sprpack
             {
                 if (image != null)
                 {
-                    Bitmap bitmap = (Bitmap)Bitmap.FromFile(image);
+                    Image bitmap = Image.Load(image);
                     if (bitmap == null)
                         return (int)FailCode.FailedToLoadImage;
-                    imageSizes.Add(image, bitmap.Size);
+                    imageSizes.Add(image, new Size(bitmap.Width, bitmap.Height));
                 }
             }
 
@@ -285,11 +283,11 @@ namespace sprpack
 			return true;
 		}
 
-		private Bitmap CreateOutputImage()
+		private Image<Rgba32>? CreateOutputImage()
 		{
 			try
 			{
-				Bitmap outputImage = new Bitmap(outputWidth, outputHeight, PixelFormat.Format32bppArgb);
+				Image<Rgba32> outputImage = new(outputWidth, outputHeight);
 
 				// draw all the images into the output image
 				foreach (var image in files)
@@ -297,15 +295,17 @@ namespace sprpack
 					if (image != null)
 					{
 						Rectangle location = imagePlacement[image];
-						Bitmap bitmap = (Bitmap)Bitmap.FromFile(image);
-						if (bitmap == null)
-							return null;
+						using (Image<Rgba32> bitmap = Image.Load<Rgba32>(image))
+						{
+							if (bitmap == null)
+								return null;
 
-						// copy pixels over to avoid antialiasing or any other side effects of drawing
-						// the subimages to the output image using Graphics
-						for (int x = 0; x < bitmap.Width; x++)
-							for (int y = 0; y < bitmap.Height; y++)
-								outputImage.SetPixel(location.X + x, location.Y + y, bitmap.GetPixel(x, y));
+							// copy pixels over to avoid antialiasing or any other side effects of drawing
+							// the subimages to the output image using Graphics
+							for (int x = 0; x < bitmap.Width; x++)
+								for (int y = 0; y < bitmap.Height; y++)
+									outputImage[location.X + x, location.Y + y] = bitmap[x, y];
+						}
 					}
 				}
 
