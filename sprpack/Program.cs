@@ -30,6 +30,7 @@ using System.Drawing;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
+using CommandLine;
 
 namespace sprpack
 {
@@ -37,13 +38,13 @@ namespace sprpack
 	{
 		static int Main(string[] args)
 		{
-			return Launch(args);
+			 
+			 var arguments = Parser.Default.ParseArguments<ProgramArguments>(args);
+			 return Launch(arguments.Value);
 		}
 
-		public static int Launch(string[] args)
+		public static int Launch(ProgramArguments arguments)
 		{
-			ProgramArguments arguments = ProgramArguments.Parse(args);
-
 			if (arguments == null)
 			{
 				return (int)FailCode.FailedParsingArguments;
@@ -58,6 +59,7 @@ namespace sprpack
 				IMapExporter mapExporter = null;
 
 				string imageExtension = Path.GetExtension(arguments.image).Substring(1).ToLower();
+				
 				foreach (var exporter in Exporters.ImageExporters)
 				{
 					if (exporter.ImageExtension.ToLower() == imageExtension)
@@ -141,6 +143,7 @@ namespace sprpack
 				{
 					if (File.Exists(arguments.image))
 						File.Delete(arguments.image);
+
 					imageExporter.Save(arguments.image, outputImage);
 				}
 				catch (Exception e)
@@ -195,6 +198,11 @@ namespace sprpack
 					images.Add(str);
 				}
 			}
+		}
+
+		static void HandleParseError(IEnumerable<Error> errs)
+		{
+			//handle errors
 		}
 	}
 }
