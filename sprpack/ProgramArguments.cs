@@ -31,7 +31,7 @@ namespace sprpack
 		[Option(HelpText = "Output file name for the image.", Default = "Atlas.png")]
 		public string image { get; set; }
 
-	 	[Option(HelpText = "Output file name for the map.", Default = "Atlas.xml")]
+	 	[Option(HelpText = "Output file name for the map.", Default = "Atlas_map.xml")]
 	 	public string map { get; set; }
 
 	 	[Option(HelpText = "Maximum output width.", Default = Constants.DefaultMaximumSheetWidth)]
