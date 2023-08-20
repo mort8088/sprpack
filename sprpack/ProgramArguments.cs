@@ -61,7 +61,7 @@ namespace sprpack
 		public ProgramArguments()
 		{
 			this.image = "Atlas.png"; 
-			this.map = "Atlas.xml";
+			this.map = "Atlas_map.xml";
 			this.mw = Constants.DefaultMaximumSheetWidth;
 			this.mh = Constants.DefaultMaximumSheetWidth;
 			this.pad = Constants.DefaultImagePadding;
