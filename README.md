@@ -32,13 +32,13 @@ All code was originaly written by Kelly Gravelyn except the code for computing t
 
 ## sprpack --help
 
-sprpack 1.0.0
+sprpack 1.0.1
 
-Copyright (C) 2022 sprpack
+Copyright (C) 2023 sprpack
 
   --image         (Default: Atlas.png) Output file name for the image.
 
-  --map           (Default: Atlas.xml) Output file name for the map.
+  --map           (Default: Atlas_map.xml) Output file name for the map.
 
   --mw            (Default: 4096) Maximum output width.
 
@@ -55,7 +55,8 @@ Copyright (C) 2022 sprpack
   --il            Path to file listing the images to build.
 
   --help          Display this help screen.
-  
+
   --version       Display version information.
 
   value pos. 0    Images to pack.
+  
