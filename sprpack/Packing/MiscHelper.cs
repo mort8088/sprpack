@@ -29,7 +29,7 @@ namespace sprpack
     public static class MiscHelper
 	{
 		// the valid extensions for images
-		public static readonly string[] AllowedImageExtensions = new[] { "png" };
+		public static readonly string[] AllowedImageExtensions = new[] { "png", "gif", "jpeg", "jpg", "bmp" };
 
 		// determines if a file is an image we accept
 		public static bool IsImageFile(string file)
