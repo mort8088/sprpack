@@ -220,9 +220,10 @@ namespace sprpack
 				}
 
 				// subtract the extra padding on the right and bottom
-				if (!shrinkVertical)
+				if (!shrinkVertical) {
 					testWidth -= padding;
-				testHeight -= padding;
+					testHeight -= padding;
+				}
 
 				// if we require a power of two texture, find the next power of two that can fit this image
 				if (requirePow2)
@@ -253,9 +254,10 @@ namespace sprpack
 				outputHeight = testHeight;
 
 				// subtract the smallest image size out for the next test iteration
-				if (!shrinkVertical)
+				if (!shrinkVertical) {
 					testWidth -= smallestWidth;
-				testHeight -= smallestHeight;
+					testHeight -= smallestHeight;
+				}
 			}
 		}
 
