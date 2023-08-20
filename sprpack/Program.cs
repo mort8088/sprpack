@@ -173,13 +173,18 @@ namespace sprpack
 
 			if (!string.IsNullOrEmpty(arguments.il))
 			{
+				if (arguments.il.StartsWith('~')) {
+					arguments.il = arguments.il.Replace("~", Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
+				}
+
 				using (StreamReader reader = new StreamReader(arguments.il))
 				{
 					while (!reader.EndOfStream)
 					{
 						string? line = reader.ReadLine();
-						if (!string.IsNullOrEmpty(line))
+						if (!string.IsNullOrEmpty(line)) {
 							inputFiles.Add(line);
+						}
 					}
 				}
 			}
@@ -191,9 +196,14 @@ namespace sprpack
 
 			foreach (var str in inputFiles)
 			{
-				if (MiscHelper.IsImageFile(str))
+				var strToUse = str;// Can't modify foreach var, FFS.
+				if (strToUse.StartsWith('~')) {
+					strToUse = strToUse.Replace("~", Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
+				}
+
+				if (MiscHelper.IsImageFile(strToUse))
 				{
-					images.Add(str);
+					images.Add(strToUse);
 				}
 			}
 		}
