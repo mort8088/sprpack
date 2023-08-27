@@ -1,9 +1,5 @@
 # sprpack
 
-Command line sprite sheet packer is a .NET Core fork of [SpriteSheetPacker](https://github.com/kellygravelyn/SpriteSheetPacker) by [kellygravelyn](https://github.com/kellygravelyn).
-
-I removed the windows forms GUI and replaced the Command line argument paser and also the use of System.Draw has been replaced with SixLabors.ImageSharp all in an effort to make this work in linux.
-
 Sprite Sheet Packer is a fully featured tool for combining multiple individual images into a single, efficiently laid out image.
 
 Sprite Sheet Packer supports reading PNG, JPG, BMP, and GIF images and produces a single PNG image with all the images embedded inside of it. The resulting image is transparent anywhere an image is not drawn. The tool also produces an accompanying file that maps the image file names with their rectangles, for use in your program to find the regions of the image you are interested in.
@@ -27,8 +23,6 @@ Non-power of two and square:
 Power of two and square:
 
 ![Power of two and square](images/Sheet4.png)
-
-All code was originaly written by Kelly Gravelyn except the code for computing the efficient placement of the rectangles which was taken from the [Nuclex Framework](http://nuclexframework.codeplex.com/).
 
 ## sprpack --help
 
@@ -59,4 +53,7 @@ Copyright (C) 2023 sprpack
   --version       Display version information.
 
   value pos. 0    Images to pack.
-  
+
+> All code was originaly written by [Kelly Gravelyn](https://ohthesetrees.com/) except the code for computing the efficient placement of the rectangles which was taken from the [Nuclex Framework](http://blog.nuclex-games.com/tags/nuclex-framework/).
+>
+>I removed the windows forms GUI and replaced the Command line argument parser and also the use of System.Draw has been replaced with SixLabors.ImageSharp all in an effort to make this work in linux.
